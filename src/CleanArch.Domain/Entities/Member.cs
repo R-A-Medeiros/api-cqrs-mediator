@@ -1,4 +1,5 @@
-﻿using CleanArch.Domain.Validation;
+﻿using System.Text.Json.Serialization;
+using CleanArch.Domain.Validation;
 
 namespace CleanArch.Domain.Entities;
 
@@ -14,6 +15,12 @@ public sealed class Member : Entity
     {
         ValidateDomain(firstName, lastName, gender, email, active);
     }
+
+    public Member()
+    {
+        
+    }
+    [JsonConstructor]
     public Member(int id, string firstName, string lastName, string gender, string email, bool? active)
     {
         DomainValidation.When(id < 0, "Invalid Id value.");
